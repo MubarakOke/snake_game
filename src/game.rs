@@ -12,7 +12,7 @@ pub struct Game {
 }
 
 impl Game {
-    pub fn new(width: i32, height: i32) -> Self {
+    pub fn new(width: i32, height: i32) -> Game {
         Game { width, height }
     }
 
@@ -20,11 +20,11 @@ impl Game {
         draw_rectangle(BORDER_COLOR, 0, 0, self.width, 1, con, g);
         draw_rectangle(BORDER_COLOR, 0, self.height-1, self.width, 1, con, g);
         draw_rectangle(BORDER_COLOR, 0, 0, 1, self.height, con, g);
-        draw_rectangle(BORDER_COLOR, 0, self.width-1, 1, self.height, con, g);
+        draw_rectangle(BORDER_COLOR, self.width -1, 0, 1, self.height, con, g);
 
     }
 
     pub fn update(&mut self, delta_time: f64){
-        
+
     }
 }

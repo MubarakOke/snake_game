@@ -7,18 +7,27 @@ mod game;
 
 use piston_window::types::Color;
 use piston_window::*;
-use crate::draw::to_coord;
+use crate::draw::to_coord_u32;
 use crate::game::Game;
 
 const BACK_COLOR: Color = [0.5, 0.5, 0.5, 1.0];
 
 fn main(){
     let (width, height)= (30, 30);
-    let window: PistonWindow = WindowSettings::new("Snake", [to_coord(width), to_coord(height)])
+    let mut window: PistonWindow = WindowSettings::new("Snake", [to_coord_u32(width), to_coord_u32(height)]) 
                                 .exit_on_esc(true)
                                 .build()
                                 .unwrap();
     let mut game: Game= Game::new(width, height);
 
-    println!("hello world");
+    while let Some(event)= window.next() {
+        window.draw_2d(&event, |c, g: &mut G2d, _|{
+            clear(BACK_COLOR, g);
+            game.draw(&c, g);
+        });
+
+        event.update(|arg|{
+            game.update(arg.dt);
+        });
+    }
 }
