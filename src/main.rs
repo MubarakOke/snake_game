@@ -21,6 +21,9 @@ fn main(){
     let mut game: Game= Game::new(width, height);
 
     while let Some(event)= window.next() {
+        if let Some(Button::Keyboard(key))= event.press_args(){
+           game.key_pressed(key);
+        }
         window.draw_2d(&event, |c, g: &mut G2d, _|{
             clear(BACK_COLOR, g);
             game.draw(&c, g);
