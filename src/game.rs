@@ -24,6 +24,22 @@ impl Game {
         Game { width, height, food_exists: false, food_x: 0, food_y: 0, snake: Snake::new(2,2) }
     }
 
+    pub fn key_pressed(&mut self, key: Key){
+        let dir = match key{
+            Key::Up=> Some(Direction::Up),
+            Key::Down=> Some(Direction::Down),
+            Key::Left=> Some(Direction::Left),
+            Key::Right=> Some(Direction::Right),
+            _=> Some(self.snake.head_direction())
+        };
+
+        if dir.unwrap() == self.snake.head_direction().opposite(){
+           return; 
+        }
+
+        self.update_snake();
+    }
+
     pub fn draw(&self, con: &Context, g: &mut G2d){
         if self.food_exists {
             draw_block(FOOD_COLOR, self.food_x, self.food_y, con, g);
