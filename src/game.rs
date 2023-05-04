@@ -7,6 +7,7 @@ use crate::snake::{Direction, Snake};
 
 const BORDER_COLOR: Color= [0.0, 0.0, 0.0, 1.0];
 const FOOD_COLOR: Color= [0.8, 0.0, 0.0, 1.0];
+const MOVIN_PERIOD: f64= 0.2;
 
 pub struct Game {
     width: i32,
@@ -58,6 +59,10 @@ impl Game {
         self.waiting_time= delta_time;
         if !self.food_exists{
             self.add_food();
+        }
+
+        if self.waiting_time > MOVIN_PERIOD {
+
         }
     }
 
