@@ -3,7 +3,7 @@ extern crate rand;
 
 mod draw;
 mod game;
-
+mod snake;
 
 use piston_window::types::Color;
 use piston_window::*;

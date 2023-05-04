@@ -40,7 +40,7 @@ impl Game {
            return; 
         }
 
-        self.update_snake();
+        self.update_snake(dir);
     }
 
     pub fn draw(&self, con: &Context, g: &mut G2d){
@@ -62,7 +62,7 @@ impl Game {
         }
 
         if self.waiting_time > MOVIN_PERIOD {
-            self.update_snake();
+            self.update_snake(None);
         }
     }
 
