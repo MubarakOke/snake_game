@@ -16,7 +16,9 @@ pub struct Game {
     food_x: i32,
     food_y: i32,
 
-    snake: Snake
+    snake: Snake,
+
+    waiting_time: f64,
 }
 
 impl Game {
@@ -53,6 +55,7 @@ impl Game {
     }
 
     pub fn update(&mut self, delta_time: f64){
+        self.waiting_time= delta_time;
         if !self.food_exists{
             self.add_food();
         }
