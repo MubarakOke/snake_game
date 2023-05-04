@@ -23,7 +23,7 @@ pub struct Game {
 
 impl Game {
     pub fn new(width: i32, height: i32) -> Game {
-        Game { width, height, food_exists: false, food_x: 0, food_y: 0, snake: Snake::new(2,2) }
+        Game { width, height, food_exists: false, food_x: 0, food_y: 0, snake: Snake::new(2,2), waiting_time: 0.0}
     }
 
     pub fn key_pressed(&mut self, key: Key){
