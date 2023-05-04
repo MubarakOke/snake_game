@@ -83,4 +83,10 @@ impl Game {
         self.food_y= new_y;
         self.food_exists= true;
     }
+
+    pub fn update_snake(&mut self, dir: Option<Direction>){
+        self.snake.move_forward(dir);
+        self.check_eating();
+        self.waiting_time= 0.0;
+    }
 }
