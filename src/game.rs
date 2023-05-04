@@ -62,7 +62,7 @@ impl Game {
         }
 
         if self.waiting_time > MOVIN_PERIOD {
-
+            self.update_snake();
         }
     }
 
