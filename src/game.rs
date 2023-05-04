@@ -3,6 +3,7 @@ use piston_window::*;
 
 use rand::{thread_rng, Rng};
 use crate::draw::{draw_block, draw_rectangle}; 
+use crate::snake::{Direction, Snake};
 
 const BORDER_COLOR: Color= [0.0, 0.0, 0.0, 1.0];
 const FOOD_COLOR: Color= [0.8, 0.0, 0.0, 1.0];
@@ -14,11 +15,13 @@ pub struct Game {
     food_exists: bool,
     food_x: i32,
     food_y: i32,
+
+    snake: Snake
 }
 
 impl Game {
     pub fn new(width: i32, height: i32) -> Game {
-        Game { width, height, food_exists: false, food_x: 0, food_y: 0 }
+        Game { width, height, food_exists: false, food_x: 0, food_y: 0, snake: Snake::new(2,2) }
     }
 
     pub fn draw(&self, con: &Context, g: &mut G2d){
