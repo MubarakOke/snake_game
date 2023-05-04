@@ -75,4 +75,25 @@ impl Snake {
         let removed_block= self.body.pop_back().unwrap();
         self.tail= Some(removed_block);
     }
+
+    pub fn head_direction(&self)-> Direction{
+        self.direction
+    }
+
+    pub fn next_head_position(&self, dir: Option<Direction>) -> (i32, i32){
+        let (head_x, head_y): (i32, i32)= self.head_position();
+        let mut moving_direction= self.direction;
+
+        match dir {
+            Some(d)=> moving_direction= d,
+            None=> ()
+        }  
+
+        match moving_direction {
+            Direction::Up => (head_x, head_y -1),
+            Direction::Down => (head_x, head_y +1),
+            Direction::Left => (head_x -1, head_y),
+            Direction::Right => (head_x +1, head_y)
+        }
+    }
 }
