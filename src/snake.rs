@@ -15,11 +15,11 @@ pub enum Direction {
 }
 
 impl Direction {
-    pub fn opposite (&self) ->{
+    pub fn opposite (&self) -> Direction{
         match *self {
             Direction::Up => Direction::Down,
             Direction::Down => Direction::Up,
-            Direction::Left => Direction::Right;
+            Direction::Left => Direction::Right,
             Direction::Right => Direction::Left
         }
     }
@@ -31,6 +31,30 @@ struct Block {
     y: i32, 
 }
 
-pub struct snake {
-    
+pub struct Snake {
+    direction: Direction,
+    body: LinkedList<Block>,
+    tail: Option<Block>
+}
+
+impl Snake {
+    pub fn new(x: i32, y: i32)-> Self{
+        let mut body: LinkedList<Block>= LinkedList::new();
+        body.push_back(Block{x: x+2, y});
+        body.push_back(Block{x: x+1, y});
+        body.push_back(Block{x, y});
+
+        Snake{direction: Direction::Right, body, tail: None}
+    }
+
+    pub fn draw(&self, con: &Context, g: &mut G2d){
+      for block in &self.body{
+        draw_block(SNAKE_COLOR, block.x, block.y, con, g);
+      }  
+    }
+
+    pub fn head_position(&self) -> (i32, i32){
+        let head_block= self.body.front().unwrap();
+        (head_block.x, head_block.y)
+    }
 }
