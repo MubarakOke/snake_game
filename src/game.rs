@@ -56,7 +56,7 @@ impl Game {
     }
 
     pub fn update(&mut self, delta_time: f64){
-        self.waiting_time= delta_time;
+        self.waiting_time+= delta_time;
         if !self.food_exists{
             self.add_food();
         }
@@ -68,7 +68,7 @@ impl Game {
 
     pub fn check_eating(&mut self){
         let (head_x, head_y): (i32, i32)= self.snake.head_position();
-        if self.food_exists && self.food_x == head_x && self.food_y == self.food_y{
+        if self.food_exists && self.food_x == head_x && self.food_y == head_y{
           self.food_exists= false;
           self.snake.restore_tail();
         }
@@ -76,8 +76,8 @@ impl Game {
 
     pub fn add_food(&mut self){
         let mut rng= thread_rng();
-        let mut new_x= rng.gen_range(1, self.width-1);
-        let mut new_y: i32= rng.gen_range(1, self.height-1);
+        let new_x= rng.gen_range(1, self.width-1);
+        let new_y: i32= rng.gen_range(1, self.height-1);
 
         self.food_x= new_x;
         self.food_y= new_y;
